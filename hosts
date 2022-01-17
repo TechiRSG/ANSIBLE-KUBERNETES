@@ -1,10 +1,11 @@
 [kubernetes-master-nodes]
-kubernetes-master ansible_host=192.10.1.128
+master ansible_host=192.10.1.29
 
 [kubernetes-worker-nodes]
-kubernetes-worker2 ansible_host=192.10.1.95
+worker1 ansible_host=192.10.1.249
 
 [all]
-kubernetes-master ansible_host=192.10.1.128
-kubernetes-worker2 ansible_host=192.10.1.95
+master ansible_host=192.10.1.29
+worker1 ansible_host=192.10.1.249
+
 
