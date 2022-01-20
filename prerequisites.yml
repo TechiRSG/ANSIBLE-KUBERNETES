@@ -33,8 +33,9 @@
    - name: Install Docker Engine.
      apt:
        name:
-         - docker-ce
+         - docker-ce=19.03
        state: present
+       allow_downgrade: true
    - name: Enable service docker, and enable persistently
      service:
        name: docker
