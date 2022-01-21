@@ -1,0 +1,33 @@
+pipeline {
+agent any
+stages {
+stage('checkout') {
+steps {
+checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/suryatejayalla/ANSIBLE-KUBERNETES']]])
+}
+}
+stage('runing prerequisite playbook'){
+    steps{
+         echo '$WORKSPACE'
+         sh 'cd $WORKSPACE'
+         sh 'ansible-playbook prerequisites.yml'
+         sh 'sleep 30s'
+    }
+}
+stage('runing configure_masternode'){
+    steps{
+         echo '$WORKSPACE'
+         sh 'cd $WORKSPACE'
+         sh 'ansible-playbook configure_master_node.yml'
+         sh 'sleep 30s'
+    }
+}
+stage('runing configure_workernode'){
+    steps{
+         echo '$WORKSPACE'
+         sh 'cd $WORKSPACE'
+         sh 'ansible-playbook configure_worker_nodes.yml'
+    }
+}
+}
+}
